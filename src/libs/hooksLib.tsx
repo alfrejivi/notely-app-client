@@ -7,7 +7,7 @@ const useFormFields = (initialState: any): [any, (event: FormEvent<FormControl>)
     return [
         fields,
         (event) => {
-            const target = event.target as HTMLTextAreaElement;
+            const target = event.target as HTMLInputElement;
             setValues({
                 ...fields,
                 [target.id]: target.value

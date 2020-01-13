@@ -3,7 +3,8 @@ import {
     HelpBlock,
     FormGroup,
     FormControl,
-    ControlLabel
+    ControlLabel,
+    Button
 } from "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
 import { useFormFields } from "../libs/hooksLib";
@@ -23,6 +24,7 @@ const Signup: React.FC<SignupProps> = (props) => {
     });
     const [newUser, setNewUser] = useState<any>(null);
     const [isLoading, setIsLoading] = useState(false);
+    const [userExists, setUserExists] = useState(false);
 
     const validateForm = () => {
         return (
@@ -47,6 +49,9 @@ const Signup: React.FC<SignupProps> = (props) => {
             setIsLoading(false);
             setNewUser(newUser);
         } catch (e) {
+            if (e.code === 'UsernameExistsException') {
+                setUserExists(true);
+            }
             alert(e.message);
             setIsLoading(false);
         }
@@ -67,6 +72,17 @@ const Signup: React.FC<SignupProps> = (props) => {
         }
     }
 
+    const resendConfirmationCode = async (event: React.MouseEvent<Button, MouseEvent>) => {
+        event.preventDefault();
+        setIsLoading(true);
+        try {
+            await Auth.resendSignUp(fields.email);
+        } catch (e) {
+            alert(e.message);
+        }
+        setIsLoading(false);
+    }
+
     const renderConfirmationForm = () => {
         return (
             <form onSubmit={handleConfirmationSubmit}>
@@ -78,7 +94,7 @@ const Signup: React.FC<SignupProps> = (props) => {
                         onChange={handleFieldChange}
                         value={fields.confirmationCode}
                     />
-                    <HelpBlock>Please check your email for the code.</HelpBlock>
+                    <HelpBlock>Please check your email for the code. <Button onClick={resendConfirmationCode}>Resend code</Button></HelpBlock>
                 </FormGroup>
                 <LoaderButton
                     block
@@ -134,7 +150,7 @@ const Signup: React.FC<SignupProps> = (props) => {
 
     return (
         <div className="Signup">
-            {!newUser ? renderForm() : renderConfirmationForm()}
+            {!newUser && !userExists ? renderForm() : renderConfirmationForm()}
         </div>
     );
 }
