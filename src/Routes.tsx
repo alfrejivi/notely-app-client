@@ -7,6 +7,7 @@ import AppliedRoute from './components/AppliedRoute';
 import { AuthProps } from './App';
 import Signup from './containers/Signup';
 import NewNote from './containers/NewNote';
+import Notes from './containers/Notes';
 
 export interface RouterProps {
     authProps: AuthProps;
@@ -18,6 +19,7 @@ const Routes: React.FC<RouterProps> = ({ authProps }) => {
             <AppliedRoute path="/" exact component={Home} authProps={authProps} />
             <AppliedRoute path="/login" exact component={Login} authProps={authProps} />
             <AppliedRoute path="/signup" exact component={Signup} authProps={authProps} />
+            <AppliedRoute path="/notes/:id" exact component={Notes} authProps={authProps} />
             <AppliedRoute path="/notes/new" exact component={NewNote} authProps={authProps} />
             <Route component={NotFound} />
         </Switch>
