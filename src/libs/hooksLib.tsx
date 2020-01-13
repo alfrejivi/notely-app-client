@@ -1,8 +1,8 @@
 import { useState, FormEvent } from 'react';
-import { FormControl } from 'react-bootstrap';
+import { FormControl, Alert } from 'react-bootstrap';
 
 
-const useFormFields = (initialState: any): [any, (event: FormEvent<FormControl>) => void] => {
+function useFormFields<T>(initialState: T): [T, (event: FormEvent<FormControl>) => void] {
     const [fields, setValues] = useState(initialState);
     return [
         fields,

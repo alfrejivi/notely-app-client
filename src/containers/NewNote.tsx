@@ -1,13 +1,18 @@
 import React, { FormEvent, useRef, useState, MutableRefObject } from 'react';
-
+import { API } from 'aws-amplify';
 import { FormGroup, FormControl, ControlLabel, Alert } from 'react-bootstrap';
+
 import { useFormFields } from '../libs/hooksLib';
 import LoaderButton from '../components/LoaderButton';
 import config from '../config';
 
 import './NewNote.css';
+import { RouteComponentProps } from 'react-router-dom';
+import { s3Upload } from '../libs/awsLib';
 
-const NewNote: React.FC = () => {
+interface NewNoteProps extends RouteComponentProps { }
+
+const NewNote: React.FC<NewNoteProps> = (props) => {
 
     const [fields, handleFieldChange] = useFormFields({
         content: ''
@@ -25,13 +30,26 @@ const NewNote: React.FC = () => {
             file.current = target.files[0];
         }
     }
-    const handleSubmit = (event: FormEvent) => {
+    const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
         if (file.current && file.current.size > config.MAX_ATTACHMENT_SIZE) {
             alert(`Please pick a file smaller than ${config.MAX_ATTACHMENT_SIZE / 1000000} MB`)
             return;
         }
         setIsLoading(true);
+
+        try {
+            const attachment = file.current ? await s3Upload(file.current) : null;
+            await createNote({ content: fields.content, attachment });
+            props.history.push('/');
+        } catch (e) {
+            alert(e);
+            setIsLoading(false);
+        }
+    }
+
+    const createNote = (note: { content: typeof fields.content, attachment: any }) => {
+        return API.post('notes', '/notes', { body: note });
     }
 
     return (
