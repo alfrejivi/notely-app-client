@@ -31,7 +31,7 @@ const App: React.FC<AppProps> = (props) => {
         }
         catch (e) {
             if (e !== 'No current user') {
-                alert(e);
+                // alert(e);
             }
         }
 

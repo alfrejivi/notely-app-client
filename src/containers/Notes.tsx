@@ -20,7 +20,6 @@ const Notes: React.FC<NotesProps> = (props) => {
 
     const file = useRef<File | null>(null);
     const [note, setNote] = useState<NoteI | null>(null);
-    const [content, setContent] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [isDeleting, setIsDeleting] = useState(false);
     const [fields, handleFieldChange] = useFormFields({
