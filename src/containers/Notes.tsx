@@ -37,7 +37,7 @@ const Notes: React.FC<NotesProps> = (props) => {
                 const { content, attachment } = note;
 
                 if (attachment) {
-                    note.attachmentURL = await Storage.vault.get(attachment);
+                    note.attachmentURL = await Storage.vault.get(attachment.key);
                 }
 
                 fields.content = content;
