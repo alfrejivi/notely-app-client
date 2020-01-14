@@ -27,7 +27,6 @@ const Login: React.FC<LoginProps> = (props) => {
         try {
             await Auth.signIn(fields.email, fields.password);
             props.userHasAuthenticated(true);
-            props.history.push("/");
         } catch (e) {
             alert(e.message || "Error");
             setIsLoading(false);

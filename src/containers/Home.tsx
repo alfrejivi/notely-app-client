@@ -41,24 +41,28 @@ const Home: React.FC<HomeProps> = (props) => {
     }
     const renderNotesList = (notes: NoteI[]) => {
         const notesToMap: NoteI[] = [...notes];
-        return notesToMap.map((note: NoteI, i: number) =>
-            i !== 0 ? (
-                <LinkContainer key={note.noteId} to={`/notes/${note.noteId}`}>
-                    <ListGroupItem header={note.content.trim().split("\n")[0]}>
-                        {"Created: " + new Date(note.createdAt).toLocaleString()}
+        return (
+            <>
+                <LinkContainer key="new" to="/notes/new">
+                    <ListGroupItem>
+                        <h4>
+                            <b>{"\uFF0B"}</b>
+                            Create a new note
+                            </h4>
                     </ListGroupItem>
                 </LinkContainer>
-            ) : (
-                    <LinkContainer key="new" to="/notes/new">
-                        <ListGroupItem>
-                            <h4>
-                                <b>{"\uFF0B"}</b>
-                                Create a new note
-                            </h4>
-                        </ListGroupItem>
-                    </LinkContainer>
-                )
+                {
+                    notesToMap.map((note: NoteI, i: number) =>
+                        <LinkContainer key={note.noteId} to={`/notes/${note.noteId}`}>
+                            <ListGroupItem header={note.content?.trim()?.split("\n")[0]}>
+                                {"Created: " + new Date(note.createdAt).toLocaleString()}
+                            </ListGroupItem>
+                        </LinkContainer>
+                    )
+                }
+            </>
         );
+
     }
 
     const renderLander = () => {
