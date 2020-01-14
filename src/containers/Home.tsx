@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Home.css';
 import { PageHeader, ListGroup, ListGroupItem } from 'react-bootstrap';
-import { RouteComponentProps } from 'react-router-dom';
+import { RouteComponentProps, Link } from 'react-router-dom';
 import { AuthProps } from '../App';
 import { API } from 'aws-amplify';
 import { LinkContainer } from 'react-router-bootstrap';
@@ -68,8 +68,16 @@ const Home: React.FC<HomeProps> = (props) => {
     const renderLander = () => {
         return (
             <div className="lander">
-                <h1 className="">Notely</h1>
-                <p className="">A simple note taking app</p>
+                <h1>Scratch</h1>
+                <p>A simple note taking app</p>
+                <div>
+                    <Link to="/login" className="btn btn-info btn-lg">
+                        Login
+                    </Link>
+                    <Link to="/signup" className="btn btn-success btn-lg">
+                        Signup
+                    </Link>
+                </div>
             </div>
         );
     }
