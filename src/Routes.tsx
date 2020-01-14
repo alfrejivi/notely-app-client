@@ -22,8 +22,8 @@ const Routes: React.FC<RouterProps> = ({ authProps }) => {
             <AppliedRoute path="/" exact component={Home} authProps={authProps} />
             <UnauthenticatedRoute path="/login" exact component={Login} authProps={authProps} />
             <UnauthenticatedRoute path="/signup" exact component={Signup} authProps={authProps} />
-            <AuthenticatedRoute path="/notes/:id" exact component={Notes} authProps={authProps} />
             <AuthenticatedRoute path="/notes/new" exact component={NewNote} authProps={authProps} />
+            <AuthenticatedRoute path="/notes/:id" exact component={Notes} authProps={authProps} />
             <AuthenticatedRoute path="/settings" exact component={Settings} authProps={authProps} />
             <Route component={NotFound} />
         </Switch>

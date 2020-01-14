@@ -54,7 +54,7 @@ const Notes: React.FC<NotesProps> = (props) => {
         return fields.content?.length > 0;
     }
 
-    const formatFilename = (str: any) => {
+    const formatFilename = (str: string) => {
         return str.replace(/^\w+-/, "");
     }
 
@@ -143,7 +143,7 @@ const Notes: React.FC<NotesProps> = (props) => {
                                     rel="noopener noreferrer"
                                     href={note.attachmentURL}
                                 >
-                                    {formatFilename(note.attachment.key)}
+                                    {formatFilename(note.attachment.key || note.attachment)}
                                 </a>
                             </FormControl.Static>
                         </FormGroup>
