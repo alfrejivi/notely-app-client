@@ -1,36 +1,36 @@
 const dev = {
-    STRIPE_KEY: "sk_test_dxktu2gCMuWsmnTMi46qFOz300vXBFBYu6",
+    STRIPE_KEY: process.env.STRIPE_KEY_DEV || "pk_test_0oGdmhKTPdNWSPAgJ4RCEslh00rdZ0pH0F",
     s3: {
-        REGION: "eu-west-1",
-        BUCKET: "notely-app-2-api-dev-attachmentsbucket-5pkzyn0882xj"
+        REGION: process.env.AWS_S3_REGION_DEV || "eu-west-1",
+        BUCKET: process.env.AWS_S3_BUCKET_DEV || "notely-app-2-api-dev-attachmentsbucket-5pkzyn0882xj"
     },
     apiGateway: {
-        REGION: "eu-west-1",
-        URL: "https://w3bigjvfr2.execute-api.eu-west-1.amazonaws.com/dev"
+        REGION: process.env.AWS_API_GATEWAY_REGION_DEV || "eu-west-1",
+        URL: process.env.AWS_API_GATEWAY_URL_DEV || "https://w3bigjvfr2.execute-api.eu-west-1.amazonaws.com/dev"
     },
     cognito: {
-        REGION: "eu-west-1",
-        USER_POOL_ID: "eu-west-1_z3aA1RU2X",
-        APP_CLIENT_ID: "4demj3j4veilka1bvvq3avabeh",
-        IDENTITY_POOL_ID: "eu-west-1:32b733de-e457-4edd-8bfc-c002bb8e5bba"
+        REGION: process.env.AWS_COGNITO_REGION_DEV || "eu-west-1",
+        USER_POOL_ID: process.env.AWS_COGNITO_USER_POOL_ID_DEV || "eu-west-1_z3aA1RU2X",
+        APP_CLIENT_ID: process.env.AWS_COGNITO_APP_CLIENT_ID_DEV || "4demj3j4veilka1bvvq3avabeh",
+        IDENTITY_POOL_ID: process.env.AWS_COGNITO_IDENTITY_POOL_ID_DEV || "eu-west-1:32b733de-e457-4edd-8bfc-c002bb8e5bba"
     }
 };
 
 const prod = {
-    STRIPE_KEY: "sk_test_dxktu2gCMuWsmnTMi46qFOz300vXBFBYu6",
+    STRIPE_KEY: process.env.STRIPE_KEY_PROD,
     s3: {
-        REGION: "eu-west-1",
-        BUCKET: "notely-app-2-api-prod-attachmentsbucket-ndco2t0yr884"
+        REGION: process.env.AWS_S3_REGION_PROD,
+        BUCKET: process.env.AWS_S3_BUCKET_PROD
     },
     apiGateway: {
-        REGION: "eu-west-1",
-        URL: "https://mk7ukv6jf3.execute-api.eu-west-1.amazonaws.com/prod"
+        REGION: process.env.AWS_API_GATEWAY_REGION_PROD,
+        URL: process.env.AWS_API_GATEWAY_URL_PROD
     },
     cognito: {
-        REGION: "eu-west-1",
-        USER_POOL_ID: "eu-west-1_saaMTrYfk",
-        APP_CLIENT_ID: "5l1tbfvksp2rj21eo31e88d067",
-        IDENTITY_POOL_ID: "eu-west-1:e852daf1-53a5-423b-9fc2-fe97af762b92"
+        REGION: process.env.AWS_COGNITO_REGION_PROD,
+        USER_POOL_ID: process.env.AWS_COGNITO_USER_POOL_ID_PROD,
+        APP_CLIENT_ID: process.env.AWS_COGNITO_APP_CLIENT_ID_PROD,
+        IDENTITY_POOL_ID: process.env.AWS_COGNITO_IDENTITY_POOL_ID_PROD
     }
 };
 

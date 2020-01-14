@@ -10,6 +10,7 @@ import Notes from './containers/Notes';
 import Settings from './containers/Settings';
 import UnauthenticatedRoute from './components/UnauthenticatedRoute';
 import AuthenticatedRoute from './components/AuthenticateRoute';
+import AppliedRoute from './components/AppliedRoute';
 
 export interface RouterProps {
     authProps: AuthProps;
@@ -18,7 +19,7 @@ export interface RouterProps {
 const Routes: React.FC<RouterProps> = ({ authProps }) => {
     return (
         <Switch>
-            <UnauthenticatedRoute path="/" exact component={Home} authProps={authProps} />
+            <AppliedRoute path="/" exact component={Home} authProps={authProps} />
             <UnauthenticatedRoute path="/login" exact component={Login} authProps={authProps} />
             <UnauthenticatedRoute path="/signup" exact component={Signup} authProps={authProps} />
             <AuthenticatedRoute path="/notes/:id" exact component={Notes} authProps={authProps} />

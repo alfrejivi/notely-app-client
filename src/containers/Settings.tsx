@@ -39,7 +39,7 @@ const Settings: React.FC<SettingsProps> = (props) => {
 
     return (
         <div className="Settings">
-            <StripeProvider apiKey={config.STRIPE_KEY}>
+            <StripeProvider apiKey={config.STRIPE_KEY!}>
                 <Elements>
                     <BillingForm
                         stripe={null}
